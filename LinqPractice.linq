@@ -25,25 +25,26 @@ var results = from x in Skills
 results.Dump();
 
 //2. List all skills, alphabetically, showing only the description of the skill.
-from x in Skills
-orderby x.Description ascending
-select x.Description;
+var results = from x in Skills
+			orderby x.Description ascending
+			select x.Description;
+results.Dump();
 
 //3. List all the skills for which we do not have any qualfied employees.
-// use .Count() = 0
-var results=from x in Skills
-where x.EmployeeSkills.Count()==0
-select x.Description;
+var results = from x in Skills
+			where x.EmployeeSkills.Count() == 0
+			select x.Description;
 results.Dump();
+
 //4. From the shifts scheduled for NAIT's placement contract, 
 //   show the number of employees needed for each day (ordered by day-of-week). 
 //   Bonus: display the name of the day of week (first day being Monday).
 var results = from x in Shifts
-group x by x.DayOfWeek into g
-select new{
-			Day = g.Key,("{0}{}{}{}{}"),
-			NumOfPeople = g.Sum(y =>y.NumberOfEmployees)
-};
+			group x by x.DayOfWeek into g
+			select new{
+						Day = g.Key,
+						NumOfPeople = g.Sum(y =>y.NumberOfEmployees)
+			};
 results.Dump();
 
 //5. List all the employees with the most years of experience.
