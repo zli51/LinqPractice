@@ -1,7 +1,6 @@
 <Query Kind="Statements">
   <Connection>
     <ID>2157a196-5ff8-4b9d-b7b8-38ca275d501f</ID>
-    <Persist>true</Persist>
     <Server>.</Server>
     <Database>WorkSchedule</Database>
   </Connection>
@@ -40,7 +39,7 @@ results.Dump();
 //   show the number of employees needed for each day (ordered by day-of-week). 
 //   Bonus: display the name of the day of week (first day being Monday).
 var results = from x in Shifts
-			where x.PlacementContract.LocationID == 4
+			where x.PlacementContract.Location.Name.Contains("NAIT")
 			group x by x.DayOfWeek into g
 			select new{
 						Day = g.Key,
