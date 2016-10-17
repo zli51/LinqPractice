@@ -25,16 +25,16 @@ var tempdata = from x in Skills
 tempdata.Dump();
 
 //2. List all skills, alphabetically, showing only the description of the skill.
-var tempdata = from x in Skills
+var result = from x in Skills
 				orderby x.Description ascending
 				select x.Description;
-tempdata.Dump();
+result.Dump();
 
 //3. List all the skills for which we do not have any qualfied employees.
-var tempdata = from x in Skills
+var results = from x in Skills
 				where x.EmployeeSkills.Count() == 0
 				select x.Description;
-tempdata.Dump();
+results.Dump();
 
 //4. From the shifts scheduled for NAIT's placement contract, 
 //   show the number of employees needed for each day (ordered by day-of-week). 
